@@ -37,7 +37,7 @@ function lose(userChoice, cpuChoice){
 function draw(userChoice, cpuChoice){
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `<h1>ɪᴛ'ꜱ ᴀ ᴅʀᴀᴡ</h1> <p>You Both Choose<strong>${cpuChoice}</strong></p>`;
+  result.innerHTML = `<h1>ɪᴛ'ꜱ ᴀ ᴅʀᴀᴡ</h1> <p>You Both Choose <strong>${cpuChoice}</strong></p>`;
   modal.style.display = 'block'
 }
 
