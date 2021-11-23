@@ -22,7 +22,7 @@ function win(userChoice, cpuChoice) {
   userScore++;
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `<h1 class="text-win">ʏᴏᴜ ᴡɪɴ!</h1> <p>ᴄᴏᴍᴘᴜᴛᴇʀ ᴄʜᴏᴏꜱᴇ<strong>${cpuChoice}</strong></p>`;
+  result.innerHTML = `<h1 class="text-win">ʏᴏᴜ ᴡɪɴ!</h1> <p>Computor Choose<strong>${cpuChoice}</strong></p>`;
   modal.style.display = 'block';
 }
 
@@ -30,14 +30,14 @@ function lose(userChoice, cpuChoice){
   cpuScore++;
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `<h1 class="text-lose">ʏᴏᴜ ʟᴏꜱᴛ</h1> <p>ᴄᴏᴍᴘᴜᴛᴇʀ ᴄʜᴏᴏꜱᴇ<strong>${cpuChoice}</strong></p>`; 
+  result.innerHTML = `<h1 class="text-lose">ʏᴏᴜ ʟᴏꜱᴛ</h1> <p>Computor Choose<strong>${cpuChoice}</strong></p>`; 
   modal.style.display = 'block'
 }
 
 function draw(userChoice, cpuChoice){
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `<h1>ɪᴛ'ꜱ ᴀ ᴅʀᴀᴡ</h1> <p>ʏᴏᴜ ʙᴏᴛʜ ᴄʜᴏᴏꜱᴇ<strong>${cpuChoice}</strong></p>`;
+  result.innerHTML = `<h1>ɪᴛ'ꜱ ᴀ ᴅʀᴀᴡ</h1> <p>You Both Choose<strong>${cpuChoice}</strong></p>`;
   modal.style.display = 'block'
 }
 
