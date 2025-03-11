@@ -75,50 +75,75 @@
     </div>
     <script src="js/main.js"></script>
     <script>
+        // Load saved scores from localStorage
+        let userScore = localStorage.getItem('userScore') || 0;
+        let cpuScore = localStorage.getItem('cpuScore') || 0;
+
+        // Update score display
+        document.getElementById('user-score').textContent = userScore;
+        document.getElementById('cpu-score').textContent = cpuScore;
+
         // Show the cookie banner if not accepted
         window.onload = function() {
             const cookieBanner = document.getElementById("cookieBanner");
             const acceptCookiesButton = document.getElementById("acceptCookies");
-            // Check if cookies have been accepted
-            if (!localStorage.getItem("cookiesAccepted")) {
-                cookieBanner.style.display = "block"; // Show the banner
-            }
-            // Accept cookies
-            acceptCookiesButton.onclick = function() {
-                localStorage.setItem("cookiesAccepted", "true");
-                cookieBanner.style.display = "none"; // Hide the banner
-            };
-        };
-        // Add event listeners for game events
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('choice')) {
-                const userChoice = e.target.id;
-                const computerChoice = getComputerChoice();
-                const winner = determineWinner(userChoice, computerChoice);
+        // Check if cookies have been accepted
+if (!localStorage.getItem("cookiesAccepted")) {
+    cookieBanner.style.display = "block"; // Show the banner
+}
+
+// Accept cookies
+acceptCookiesButton.onclick = function() {
+    localStorage.setItem("cookiesAccepted", "true");
+    cookieBanner.style.display = "none"; // Hide the banner
+};
+
+// Add event listeners for game events
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('choice')) {
+        const userChoice = e.target.id;
+        const computerChoice = getComputerChoice();
+        const winner = determineWinner(userChoice, computerChoice);
+
+        // Update scores
+        if (winner === 'user') {
+            userScore++;
+            localStorage.setItem('userScore', userScore);
+        } else if (winner === 'computer') {
+            cpuScore++;
+            localStorage.setItem('cpuScore', cpuScore);
+        }
+
+        // Update score display
+        document.getElementById('user-score').textContent = userScore;
+        document.getElementById('cpu-score').textContent = cpuScore;
+
         // Track game win, loss, or restart events
-if (winner === 'user') {
-    gtag('event', 'game_win', {
-        'event_category': 'game',
-        'event_label': 'win'
-    });
-} else if (winner === 'computer') {
-    gtag('event', 'game_loss', {
-        'event_category': 'game',
-        'event_label': 'loss'
-    });
-} else {
-    gtag('event', 'game_restart', {
-        'event_category': 'game',
-        'event_label': 'restart'
-    });
-}
-}
+        if (winner === 'user') {
+            gtag('event', 'game_win', {
+                'event_category': 'game',
+                'event_label': 'win'
+            });
+        } else if (winner === 'computer') {
+            gtag('event', 'game_loss', {
+                'event_category': 'game',
+                'event_label': 'loss'
+            });
+        } else {
+            gtag('event', 'game_restart', {
+                'event_category': 'game',
+                'event_label': 'restart'
+            });
+        }
+    }
 });
+
 // Helper function to get computer's choice
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * choices.length)];
 }
+
 // Helper function to determine winner
 function determineWinner(userChoice, computerChoice) {
     if (userChoice === computerChoice) {
