@@ -6,6 +6,16 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/modal.css">
   <title>ScissorSmack</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QBJ0WVVB7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-6QBJ0WVVB7');
+  </script>
 </head>
 <body>
   <header>
@@ -37,14 +47,29 @@
   </div>
   <script src="js/main.js"></script>
   <script>
-    // Add vibration effect when user loses
+    // Add event listeners for game events
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('choice')) {
         const userChoice = e.target.id;
         const computerChoice = getComputerChoice();
         const winner = determineWinner(userChoice, computerChoice);
-        if (winner === 'computer') {
-          navigator.vibrate([500, 100, 500]);
+
+        // Track game win, loss, or restart events
+        if (winner === 'user') {
+          gtag('event', 'game_win', {
+            'event_category': 'game',
+            'event_label': 'win'
+          });
+        } else if (winner === 'computer') {
+          gtag('event', 'game_loss', {
+            'event_category': 'game',
+            'event_label': 'loss'
+          });
+        } else {
+          gtag('event', 'game_restart', {
+            'event_category': 'game',
+            'event_label': 'restart'
+          });
         }
       }
     });
