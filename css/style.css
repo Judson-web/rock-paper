@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,14 +9,15 @@ body{
   font-family: monospace;
 }
 
-header{
-  text-align:center; 
+header {
+  text-align: center;
   color: white;
-  font-size: 25px;
+  font-size: 2.5rem; /* Increased font size */
 }
 
 /* ------------------------------Restart button */
-.btn-container{
+
+.btn-container {
   text-align: center;
 }
 
@@ -24,93 +25,103 @@ header{
   color: white;
   background-color: transparent;
   border-radius: 12px;
-  padding: 10px 10px;
+  padding: 1rem 2rem; /* Increased padding */
   font-weight: bold;
-  font-size: 16px;
+  font-size: 1.5rem; /* Increased font size */
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.restart-btn:hover{
+.restart-btn:hover {
   cursor: pointer;
   background-color: white;
   color: black;
 }
 
 /* ------------------------------Score board */
-.score-board{
+
+.score-board {
   margin: 10% auto 5%;
   text-align: center;
   color: white;
   border: 3px solid white;
-  text-align: center;
-  width: 250px;
-  font-size: 60px;
-  padding: 30px 10px;
-  position: relative
+  width: 80%; /* Changed to relative unit */
+  font-size: 4rem; /* Increased font size */
+  padding: 2rem; /* Increased padding */
+  position: relative;
 }
 
-.badge{
-  background:#c112a0;
-  font-size: 30px;
-  padding: 10px 10px;
+.badge {
+  background: #c112a0;
+  font-size: 2.5rem; /* Increased font size */
+  padding: 1rem 2rem; /* Increased padding */
   border-radius: 12px;
 }
 
-#user-badge{
+#user-badge {
   position: absolute;
   top: 20px;
   left: -50px;
 }
 
-#cpu-badge{
+#cpu-badge {
   position: absolute;
   top: 20px;
   right: -65px;
 }
 
 /* ------------------------------Player choices */
-.choices{
+
+.choices {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* Added flex-wrap */
 }
 
 .choices .choice {
   cursor: pointer;
-  border: 3px solid  #531345;
+  border: 3px solid #531345;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 40%;
   margin-right: 20px;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
   transition: all 0.1s ease;
+  width: 120px; /* Added width */
+  height: 120px; /* Added height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.choices .choice:hover{
+.choices .choice:hover {
   cursor: pointer;
   background: #531345;
 }
 
-.choices .choice img{
-  width: 120px;
+.choices .choice img {
+  width: 80px; /* Reduced width */
+  height: 80px; /* Reduced height */
 }
 
-h2{
+h2 {
   text-align: center;
   color: white;
-  font-size: 25px;
+  font-size: 2.5rem; /* Increased font size */
 }
 
-/* ------------------------------Modal */
-.text-win{
-  color: #289a28;
-  font-size: 40px;
-}
+/* Added responsive design styles */
 
-.text-lose{
-  color: #ff0000;
-  font-size: 40px;
-}
-
-.modal-content p{
-  font-size: 18px;
+@media only screen and (max-width: 768px) {
+  .score-board {
+    width: 90%; /* Increased width */
+    font-size: 3rem; /* Reduced font size */
+  }
+  
+  .choices {
+    flex-direction: column; /* Changed flex direction */
+  }
+  
+  .choices .choice {
+    margin-bottom: 20px; /* Added margin */
+  }
 }
