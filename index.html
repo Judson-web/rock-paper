@@ -16,28 +16,33 @@
     </script>
     <style>
         /* Cookie Banner Styles */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            z-index: 1000;
-        }
-        .cookie-banner button {
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        .cookie-banner button:hover {
-            background-color: #e67e22;
-        }
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #3A3D41; /* Dark background */
+    color: #39FF14; /* Neon green text */
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    border-top: 2px solid #39FF14; /* Neon green border */
+}
+
+.cookie-banner button {
+    background-color: #8F0A1A; /* Dark pink background */
+    color: #FFFFFF; /* White text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #39FF14; /* Neon green glow */
+}
+
+.cookie-banner button:hover {
+    background-color: #C50A64; /* Lighter pink background */
+}
     </style>
 </head>
 <body>
