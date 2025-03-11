@@ -1,15 +1,22 @@
 let userScore = 0;
 let cpuScore = 0;
+
 const userScore_span = document.getElementById("user-score");
 const cpuScore_span = document.getElementById("cpu-score");
-// const scoreBoard_div = document.getElementById(".score-board")
+
 const restart = document.getElementById("restart");
-const result = document.getElementById ("result")
+const result = document.getElementById("result");
 const modal = document.querySelector(".modal");
+
 const rock_div = document.getElementById("rock");
 const paper_div = document.getElementById("paper");
 const scissors_div = document.getElementById("scissors");
 
+const winningConditions = {
+  rock: 'scissors',
+  paper: 'rock',
+  scissors: 'paper'
+};
 
 function getCpuChoice() {
   const choices = ['rock', 'paper', 'scissors'];
@@ -17,83 +24,83 @@ function getCpuChoice() {
   return choices[randomNumber];
 }
 
-
 function win(userChoice, cpuChoice) {
   userScore++;
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `<h1 class="text-win">ʏᴏᴜ ᴡɪɴ!</h1> <p>Computor Choose <strong>${cpuChoice}</strong></p>`;
+  result.innerHTML = `
+    <h1 class="text-win">ʏᴏᴜ ᴡɪɴ!</h1>
+    <p>Computer chose <strong>${cpuChoice}</strong></p>
+  `;
   modal.style.display = 'block';
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 2000);
 }
 
-function lose(userChoice, cpuChoice){
+function lose(userChoice, cpuChoice) {
   cpuScore++;
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `<h1 class="text-lose">ʏᴏᴜ ʟᴏꜱᴛ</h1> <p>Computor Choose <strong>${cpuChoice}</strong></p>`; 
-  modal.style.display = 'block'
+  result.innerHTML = `
+    <h1 class="text-lose">ʏᴏᴜ ʟᴏꜱᴛ</h1>
+    <p>Computer chose <strong>${cpuChoice}</strong></p>
+  `;
+  modal.style.display = 'block';
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 2000);
 }
 
-function draw(userChoice, cpuChoice){
+function draw(userChoice, cpuChoice) {
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `<h1>ɪᴛ'ꜱ ᴀ ᴅʀᴀᴡ</h1> <p>You Both Choose <strong>${cpuChoice}</strong></p>`;
-  modal.style.display = 'block'
+  result.innerHTML = `
+    <h1>ɪᴛ'ꜱ ᴀ ᴅʀᴀᴡ</h1>
+    <p>You both chose <strong>${cpuChoice}</strong></p>
+  `;
+  modal.style.display = 'block';
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 2000);
 }
-
 
 function play(userChoice) {
   const cpuChoice = getCpuChoice();
-  switch (userChoice + cpuChoice) {
-    case 'rockscissors':
-    case 'paperrock':
-    case 'scissorspaper':
-      win(userChoice, cpuChoice);
-      break;
-    case 'rockpaper':
-    case 'paperscissors':
-    case 'scissorsrock':
-      lose(userChoice, cpuChoice);
-      break;
-    case 'rockrock':
-    case 'paperpaper':
-    case 'scissorsscissors':
-      draw(userChoice, cpuChoice);
-      break;
+  if (winningConditions[userChoice] === cpuChoice) {
+    win(userChoice, cpuChoice);
+  } else if (userChoice === cpuChoice) {
+    draw(userChoice, cpuChoice);
+  } else {
+    lose(userChoice, cpuChoice);
   }
 }
-
 
 function main() {
-  rock_div.addEventListener('click', function() {
+  rock_div.addEventListener('click', () => {
     play('rock');
-  })
-  
-  paper_div.addEventListener('click', function() {
+  });
+  paper_div.addEventListener('click', () => {
     play('paper');
-  })
-  
-  scissors_div.addEventListener('click', function() {
+  });
+  scissors_div.addEventListener('click', () => {
     play('scissors');
-  })
+  });
 }
 
-
-function clearModal(e){
-  if(e.target == modal) {
-    modal.style.display = "none"
+function clearModal(e) {
+  if (e.target === modal) {
+    modal.style.display = 'none';
   }
 }
 
-
-function restartGame(){
+function restartGame() {
   userScore = 0;
   cpuScore = 0;
   userScore_span.innerHTML = userScore;
   cpuScore_span.innerHTML = cpuScore;
 }
 
-
 restart.addEventListener('click', restartGame);
 window.addEventListener('click', clearModal);
-main ();
+main();
