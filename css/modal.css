@@ -1,4 +1,4 @@
-.modal{
+.modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -11,25 +11,30 @@
   background-color: rgba(26, 5, 21, 0.5);
 }
 
-.modal-content{
+.modal-content {
   margin: 15% auto;
-  width: 300px;
-  height: 150px;
+  width: 80%; /* Changed to relative unit */
+  height: auto; /* Changed to auto */
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   text-align: center;
   padding: 4%;
   animation-name: modalopen;
-  animation-duration: 1s; 
+  animation-duration: 1s;
 }
 
-@keyframes modalopen{
-  from{
-    opacity: 0;
-  }
+@keyframes modalopen {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-  to{
-    opacity: 1;
+/* Added responsive design styles */
+
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Increased width for smaller screens */
+    height: auto;
+    padding: 2%; /* Reduced padding for smaller screens */
   }
 }
