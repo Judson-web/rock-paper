@@ -6,44 +6,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/modal.css">
     <title>ScissorSmack</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QBJ0WVVB7"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-6QBJ0WVVB7');
-    </script>
-    <style>
-        /* Cookie Banner Styles */
-.cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #3A3D41; /* Dark background */
-    color: #39FF14; /* Neon green text */
-    padding: 15px;
-    text-align: center;
-    z-index: 1000;
-    border-top: 2px solid #39FF14; /* Neon green border */
-}
-
-.cookie-banner button {
-    background-color: #8F0A1A; /* Dark pink background */
-    color: #FFFFFF; /* White text */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-left: 10px;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/modal.css">
-    <title>ScissorSmack</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QBJ0WVVB7"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -54,37 +16,35 @@
 </head>
 <body>
     <header>
-        <h1>ʟᴏᴀᴅɪɴɢ... ʟᴏᴏᴋɪɴɢ... ᴘʟᴀʏɪɴɢ... ScissorSmack</h1>
+        <h1>ScissorSmack</h1>
     </header>
     <div class="btn-container">
-        <button id="restart" class="restart-btn">ʀᴇꜱᴛᴀʀᴛ ɢᴀᴍᴇ</button>
+        <button id="restart" class="restart-btn">Restart Game</button>
     </div>
     <div class="score-board">
-        <div id="user-badge" class="badge">ᴜꜱᴇʀ</div>
-        <div id="cpu-badge" class="badge">ᴄᴏᴍᴘᴜ</div>
+        <div id="user-badge" class="badge">User</div>
+        <div id="cpu-badge" class="badge">Comp</div>
         <span id="user-score">0</span>:<span id="cpu-score">0</span>
     </div>
     <div class="choices">
         <div id="rock" class="choice">
-            <img src="images/rock.png" alt="Rock">
+            <img src="images/rock_neon.png" alt="Rock">
         </div>
         <div id="paper" class="choice">
-            <img src="images/paper.png" alt="Paper">
+            <img src="images/paper_neon.png" alt="Paper">
         </div>
         <div id="scissors" class="choice">
-            <img src="images/scissors.png" alt="Scissors">
+            <img src="images/scissors_neon.png" alt="Scissors">
         </div>
     </div>
-    <h2>ᴍᴀᴋᴇ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ</h2>
+    <h2>Make Your Choice</h2>
     <div class="modal">
         <div id="result" class="modal-content"></div>
     </div>
-    <div id="cookieBanner" class="cookie-banner" style="display: none;">
+    <div id="cookieBanner" class="cookie-banner">
         <p>We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.</p>
-        <button id="acceptCookies">Accept Cookies</button>
+        <button id="acceptCookies">Accept</button>
     </div>
     <script src="js/main.js"></script>
 </body>
-</html>dy>
 </html>
-```
