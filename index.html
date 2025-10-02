@@ -36,14 +36,21 @@
     padding: 10px 20px;
     cursor: pointer;
     margin-left: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px #39FF14; /* Neon green glow */
-}
-
-.cookie-banner button:hover {
-    background-color: #C50A64; /* Lighter pink background */
-}
-    </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <title>ScissorSmack</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QBJ0WVVB7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6QBJ0WVVB7');
+    </script>
 </head>
 <body>
     <header>
@@ -69,74 +76,15 @@
         </div>
     </div>
     <h2>ᴍᴀᴋᴇ ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ</h2>
-    <!-- Modal -->
     <div class="modal">
         <div id="result" class="modal-content"></div>
     </div>
-    <!-- Cookie Banner -->
     <div id="cookieBanner" class="cookie-banner" style="display: none;">
         <p>We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.</p>
         <button id="acceptCookies">Accept Cookies</button>
     </div>
     <script src="js/main.js"></script>
-    <script>
-        // Show the cookie banner if not accepted
-        window.onload = function() {
-            const cookieBanner = document.getElementById("cookieBanner");
-            const acceptCookiesButton = document.getElementById("acceptCookies");
-            // Check if cookies have been accepted
-            if (!localStorage.getItem("cookiesAccepted")) {
-                cookieBanner.style.display = "block"; // Show the banner
-            }
-            // Accept cookies
-            acceptCookiesButton.onclick = function() {
-                localStorage.setItem("cookiesAccepted", "true");
-                cookieBanner.style.display = "none"; // Hide the banner
-            };
-        };
-        // Add event listeners for game events
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('choice')) {
-                const userChoice = e.target.id;
-                const computerChoice = getComputerChoice();
-                const winner = determineWinner(userChoice, computerChoice);
-        // Track game win, loss, or restart events
-if (winner === 'user') {
-    gtag('event', 'game_win', {
-        'event_category': 'game',
-        'event_label': 'win'
-    });
-} else if (winner === 'computer') {
-    gtag('event', 'game_loss', {
-        'event_category': 'game',
-        'event_label': 'loss'
-    });
-} else {
-    gtag('event', 'game_restart', {
-        'event_category': 'game',
-        'event_label': 'restart'
-    });
-}
-}
-});
-// Helper function to get computer's choice
-function getComputerChoice() {
-    const choices = ['rock', 'paper', 'scissors'];
-    return choices[Math.floor(Math.random() * choices.length)];
-}
-// Helper function to determine winner
-function determineWinner(userChoice, computerChoice) {
-    if (userChoice === computerChoice) {
-        return 'tie';
-    } else if ((userChoice === 'rock' && computerChoice === 'scissors') ||
-        (userChoice === 'paper' && computerChoice === 'rock') ||
-        (userChoice === 'scissors' && computerChoice === 'paper')) {
-        return 'user';
-    } else {
-        return 'computer';
-    }
-}
-</script>
 </body>
+</html>dy>
 </html>
 ```
