@@ -1,106 +1,114 @@
-let userScore = 0;
-let cpuScore = 0;
+const game = {
+  userScore: 0,
+  cpuScore: 0,
+  userScore_span: document.getElementById("user-score"),
+  cpuScore_span: document.getElementById("cpu-score"),
+  restart: document.getElementById("restart"),
+  result: document.getElementById("result"),
+  modal: document.querySelector(".modal"),
+  winningConditions: {
+    rock: 'scissors',
+    paper: 'rock',
+    scissors: 'paper'
+  },
 
-const userScore_span = document.getElementById("user-score");
-const cpuScore_span = document.getElementById("cpu-score");
+  getCpuChoice() {
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomNumber = Math.floor(Math.random() * 3);
+    return choices[randomNumber];
+  },
 
-const restart = document.getElementById("restart");
-const result = document.getElementById("result");
-const modal = document.querySelector(".modal");
+  showResult(message, outcome, cpuChoice) {
+    this.userScore_span.innerHTML = this.userScore;
+    this.cpuScore_span.innerHTML = this.cpuScore;
+    this.result.innerHTML = `
+      <h1 class="text-${outcome}">${message}</h1>
+      <p>Computer chose <strong>${cpuChoice}</strong></p>
+    `;
+    this.modal.style.display = 'block';
+    setTimeout(() => {
+      this.modal.style.display = 'none';
+    }, 2000);
+  },
 
-const rock_div = document.getElementById("rock");
-const paper_div = document.getElementById("paper");
-const scissors_div = document.getElementById("scissors");
+  play(userChoice) {
+    const cpuChoice = this.getCpuChoice();
+    if (this.winningConditions[userChoice] === cpuChoice) {
+      this.userScore++;
+      this.showResult('ʏᴏᴜ ᴡɪɴ!', 'win', cpuChoice);
+    } else if (userChoice === cpuChoice) {
+      this.showResult('ɪᴛ’ꜱ ᴀ ᴅʀᴀᴡ', 'draw', cpuChoice);
+    } else {
+      this.cpuScore++;
+      this.showResult('ʏᴏᴜ ʟᴏꜱᴛ', 'lose', cpuChoice);
+    }
+  },
 
-const winningConditions = {
-  rock: 'scissors',
-  paper: 'rock',
-  scissors: 'paper'
+  restartGame() {
+    this.userScore = 0;
+    this.cpuScore = 0;
+    this.userScore_span.innerHTML = this.userScore;
+    this.cpuScore_span.innerHTML = this.cpuScore;
+  },
+
+  clearModal(e) {
+    if (e.target === this.modal) {
+      this.modal.style.display = 'none';
+    }
+  },
+
+  init() {
+    document.getElementById("rock").addEventListener('click', () => this.play('rock'));
+    document.getElementById("paper").addEventListener('click', () => this.play('paper'));
+    document.getElementById("scissors").addEventListener('click', () => this.play('scissors'));
+    this.restart.addEventListener('click', () => this.restartGame());
+    window.addEventListener('click', (e) => this.clearModal(e));
+  }
 };
 
-function getCpuChoice() {
-  const choices = ['rock', 'paper', 'scissors'];
-  const randomNumber = Math.floor(Math.random() * 3);
-  return choices[randomNumber];
-}
+game.init();
 
-function win(userChoice, cpuChoice) {
-  userScore++;
-  userScore_span.innerHTML = userScore;
-  cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `
-    <h1 class="text-win">ʏᴏᴜ ᴡɪɴ!</h1>
-    <p>Computer chose <strong>${cpuChoice}</strong></p>
-  `;
-  modal.style.display = 'block';
-  setTimeout(() => {
-    modal.style.display = 'none';
-  }, 2000);
-}
+// Cookie Banner Logic
+window.onload = function() {
+  const cookieBanner = document.getElementById("cookieBanner");
+  const acceptCookiesButton = document.getElementById("acceptCookies");
 
-function lose(userChoice, cpuChoice) {
-  cpuScore++;
-  userScore_span.innerHTML = userScore;
-  cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `
-    <h1 class="text-lose">ʏᴏᴜ ʟᴏꜱᴛ</h1>
-    <p>Computer chose <strong>${cpuChoice}</strong></p>
-  `;
-  modal.style.display = 'block';
-  setTimeout(() => {
-    modal.style.display = 'none';
-  }, 2000);
-}
-
-function draw(userChoice, cpuChoice) {
-  userScore_span.innerHTML = userScore;
-  cpuScore_span.innerHTML = cpuScore;
-  result.innerHTML = `
-    <h1>ɪᴛ'ꜱ ᴀ ᴅʀᴀᴡ</h1>
-    <p>You both chose <strong>${cpuChoice}</strong></p>
-  `;
-  modal.style.display = 'block';
-  setTimeout(() => {
-    modal.style.display = 'none';
-  }, 2000);
-}
-
-function play(userChoice) {
-  const cpuChoice = getCpuChoice();
-  if (winningConditions[userChoice] === cpuChoice) {
-    win(userChoice, cpuChoice);
-  } else if (userChoice === cpuChoice) {
-    draw(userChoice, cpuChoice);
-  } else {
-    lose(userChoice, cpuChoice);
+  if (!localStorage.getItem("cookiesAccepted")) {
+    cookieBanner.style.display = "block";
   }
-}
 
-function main() {
-  rock_div.addEventListener('click', () => {
-    play('rock');
-  });
-  paper_div.addEventListener('click', () => {
-    play('paper');
-  });
-  scissors_div.addEventListener('click', () => {
-    play('scissors');
-  });
-}
+  acceptCookiesButton.onclick = function() {
+    localStorage.setItem("cookiesAccepted", "true");
+    cookieBanner.style.display = "none";
+  };
+};
 
-function clearModal(e) {
-  if (e.target === modal) {
-    modal.style.display = 'none';
+// Google Analytics Event Tracking
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.choice')) {
+    const userChoice = e.target.closest('.choice').id;
+    const computerChoice = game.getCpuChoice();
+    let winner;
+
+    if (userChoice === computerChoice) {
+      winner = 'tie';
+    } else if (game.winningConditions[userChoice] === computerChoice) {
+      winner = 'user';
+    } else {
+      winner = 'computer';
+    }
+
+    if (winner === 'user') {
+      gtag('event', 'game_win', { 'event_category': 'game', 'event_label': 'win' });
+    } else if (winner === 'computer') {
+      gtag('event', 'game_loss', { 'event_category': 'game', 'event_label': 'loss' });
+    }
   }
-}
+});
 
-function restartGame() {
-  userScore = 0;
-  cpuScore = 0;
-  userScore_span.innerHTML = userScore;
-  cpuScore_span.innerHTML = cpuScore;
-}
-
-restart.addEventListener('click', restartGame);
-window.addEventListener('click', clearModal);
-main();
+document.getElementById('restart').addEventListener('click', () => {
+    gtag('event', 'game_restart', {
+        'event_category': 'game',
+        'event_label': 'restart'
+    });
+});
