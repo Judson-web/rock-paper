@@ -1,3 +1,12 @@
+:root {
+  --primary-color: white;
+  --secondary-color: black;
+  --accent-color: #c112a0;
+  --choice-bg: rgba(255, 255, 255, 0.3);
+  --choice-hover-bg: #531345;
+  --border-color: #531345;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,54 +16,48 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   font-family: monospace;
+  color: var(--primary-color);
 }
 
 header {
   text-align: center;
-  color: white;
-  font-size: 2.5rem; /* Increased font size */
+  font-size: 2.5rem;
 }
-
-/* ------------------------------Restart button */
 
 .btn-container {
   text-align: center;
 }
 
 .restart-btn {
-  color: white;
+  color: var(--primary-color);
   background-color: transparent;
   border-radius: 12px;
-  padding: 1rem 2rem; /* Increased padding */
+  padding: 1rem 2rem;
   font-weight: bold;
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .restart-btn:hover {
-  cursor: pointer;
-  background-color: white;
-  color: black;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
-
-/* ------------------------------Score board */
 
 .score-board {
   margin: 10% auto 5%;
   text-align: center;
-  color: white;
-  border: 3px solid white;
-  width: 80%; /* Changed to relative unit */
-  font-size: 4rem; /* Increased font size */
-  padding: 2rem; /* Increased padding */
+  border: 3px solid var(--primary-color);
+  width: 80%;
+  font-size: 4rem;
+  padding: 2rem;
   position: relative;
 }
 
 .badge {
-  background: #c112a0;
-  font-size: 2.5rem; /* Increased font size */
-  padding: 1rem 2rem; /* Increased padding */
+  background: var(--accent-color);
+  font-size: 2.5rem;
+  padding: 1rem 2rem;
   border-radius: 12px;
 }
 
@@ -70,58 +73,54 @@ header {
   right: -65px;
 }
 
-/* ------------------------------Player choices */
-
 .choices {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Added flex-wrap */
+  flex-wrap: wrap;
 }
 
 .choices .choice {
   cursor: pointer;
-  border: 3px solid #531345;
-  background-color: rgba(255, 255, 255, 0.3);
+  border: 3px solid var(--border-color);
+  background-color: var(--choice-bg);
   border-radius: 40%;
   margin-right: 20px;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
   transition: all 0.1s ease;
-  width: 120px; /* Added width */
-  height: 120px; /* Added height */
+  width: 120px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .choices .choice:hover {
-  cursor: pointer;
-  background: #531345;
+  background: var(--choice-hover-bg);
 }
 
 .choices .choice img {
-  width: 80px; /* Reduced width */
-  height: 80px; /* Reduced height */
+  width: 80px;
+  height: 80px;
 }
 
 h2 {
   text-align: center;
-  color: white;
-  font-size: 2.5rem; /* Increased font size */
+  font-size: 2.5rem;
 }
-
-/* Added responsive design styles */
 
 @media only screen and (max-width: 768px) {
   .score-board {
-    width: 90%; /* Increased width */
-    font-size: 3rem; /* Reduced font size */
+    width: 90%;
+    font-size: 3rem;
   }
   
   .choices {
-    flex-direction: column; /* Changed flex direction */
+    flex-direction: column;
+    align-items: center;
   }
   
   .choices .choice {
-    margin-bottom: 20px; /* Added margin */
+    margin-bottom: 20px;
+    margin-right: 0;
   }
 }
